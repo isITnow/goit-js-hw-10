@@ -16,10 +16,10 @@ const refs = {
 refs.input.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 function onInput(evt) {
+    refs.countryList.innerHTML = '';
+    refs.countryInfo.innerHTML = '';
     const country = evt.target.value.trim();
-    if (country.length <= 0) {
-        refs.countryList.innerHTML = '';
-        refs.countryInfo.innerHTML = '';
+    if ((country.length = 0)) {
         return;
     }
     fetchCountries(country)
@@ -38,18 +38,14 @@ function onInput(evt) {
             }
         })
         .catch(error => {
-            refs.countryList.innerHTML = '';
-            refs.countryInfo.innerHTML = '';
             Notiflix.Notify.failure('Oops, there is no country with that name');
         });
 }
 
 function createListCard(countries) {
-    refs.countryInfo.innerHTML = '';
     refs.countryList.innerHTML = countryList(countries);
 }
 
 function createInfoCard(country) {
-    refs.countryList.innerHTML = '';
     refs.countryInfo.innerHTML = countryInfo(country);
 }
