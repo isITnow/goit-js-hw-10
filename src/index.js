@@ -19,7 +19,7 @@ function onInput(evt) {
     refs.countryList.innerHTML = '';
     refs.countryInfo.innerHTML = '';
     const country = evt.target.value.trim();
-    if ((country.length = 0)) {
+    if (country.length === 0) {
         return;
     }
     fetchCountries(country)
