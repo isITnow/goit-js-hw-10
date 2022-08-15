@@ -46,7 +46,7 @@ function onInput(evt) {
 
 function createListCard(countries) {
     refs.countryInfo.innerHTML = '';
-    refs.countryList.insertAdjacentHTML('afterbegin', countryList(countries));
+    refs.countryList.innerHTML = countryList(countries);
 }
 
 function createInfoCard(country) {
