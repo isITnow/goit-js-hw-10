@@ -16,13 +16,12 @@ const refs = {
 refs.input.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 function onInput(evt) {
-    const country = evt.target.value.toLowerCase().trim();
+    const country = evt.target.value.trim();
     if (country.length <= 0) {
         refs.countryList.innerHTML = '';
         refs.countryInfo.innerHTML = '';
         return;
     }
-    //   console.log(fetchCountries(country));
     fetchCountries(country)
         .then(data => {
             if (data.length > 10) {
@@ -38,9 +37,11 @@ function onInput(evt) {
                 });
             }
         })
-        .catch(error =>
-            Notiflix.Notify.failure('Oops, there is no country with that name'),
-        );
+        .catch(error => {
+            refs.countryList.innerHTML = '';
+            refs.countryInfo.innerHTML = '';
+            Notiflix.Notify.failure('Oops, there is no country with that name');
+        });
 }
 
 function createListCard(countries) {
